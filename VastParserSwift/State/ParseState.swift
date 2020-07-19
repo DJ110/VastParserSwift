@@ -18,8 +18,6 @@ open class ParseState {
     
     var parseElements : [String] = []
     
-    var parseExtension : Bool = false
-    
     // Helper Methods
     
     func updateParseElement(rank: Int, elementName: String) {

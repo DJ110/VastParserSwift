@@ -173,11 +173,6 @@ open class VastParser : NSObject, XMLParserDelegate {
     }
     
     public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        print("-- Start --")
-        print(elementName)
-        if let url = namespaceURI {
-            print(url)
-        }
         // Parse
         self.elementHandler[elementName]?.execute(state: self.state, elementName: elementName, attributes: attributeDict)
         
@@ -195,15 +190,7 @@ open class VastParser : NSObject, XMLParserDelegate {
         errorCheck(parser: parser)
     }
 
-    public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        print("-- End --")
-        print(elementName)
-        
-        // Extension check
-        if (elementName == Constants.Element.EXTENSION) {
-            state.parseExtension = false
-        }
-    }
+    public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {}
     
     public func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         print("XML parse error : \(parseError.localizedDescription)")

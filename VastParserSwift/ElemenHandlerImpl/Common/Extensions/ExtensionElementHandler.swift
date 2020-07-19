@@ -25,16 +25,14 @@ class ExtensionElementHandler: ElementHandler {
         
         if state.checkAnyParent(rank: rank-1, targetElementName: "Extensions") {
             
-            if state.checkAnyParent(rank: 2, targetElementName: "InLine") {
-                state.parseExtension = true
-            } else if state.checkAnyParent(rank: 2, targetElementName: "Wrapper") {
-            
+            if state.isInLine() {
+                //state.parseExtension = true
                 state.updateParseElement(rank: rank, elementName: elementName)
-                state.parseExtension = true
-            } else {
                 
+            } else if state.isWrapper() {
+                //state.parseExtension = true
+                state.updateParseElement(rank: rank, elementName: elementName)
             }
-            
         } else {
             state.errors.append(ParseError(message: "Extension should be under InLine or Extensions"))
         }
